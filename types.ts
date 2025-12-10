@@ -13,11 +13,13 @@ export interface AnalysisResult {
   simplifiedLogic: string;
   formattedCode: string;
   learningTips: string[];
+  output?: string;
 }
 
 export enum AppState {
   IDLE = 'IDLE',
   ANALYZING = 'ANALYZING',
+  EXECUTING = 'EXECUTING',
   RESULTS = 'RESULTS',
   ERROR = 'ERROR'
 }

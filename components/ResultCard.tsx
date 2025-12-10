@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnalysisResult } from '../types';
 import { CodeBlock } from './CodeBlock';
-import { AlertTriangle, CheckCircle, Lightbulb, GraduationCap } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Lightbulb, GraduationCap, Terminal } from 'lucide-react';
 
 interface ResultCardProps {
   result: AnalysisResult;
@@ -106,9 +106,22 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
         <CodeBlock code={result.formattedCode} label="Final Result" language={result.language} />
       </section>
 
-      {/* 6. Learning Tips */}
+      {/* 6. Output (Optional) */}
+      {result.output && (
+        <section className="mt-6 bg-slate-900 rounded-xl overflow-hidden border border-slate-700">
+           <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 border-b border-slate-700 text-slate-300 text-sm font-medium">
+              <Terminal size={14} />
+              Output of Fixed Code
+           </div>
+           <div className="p-4 text-slate-200 font-mono text-sm whitespace-pre-wrap">
+              {result.output}
+           </div>
+        </section>
+      )}
+
+      {/* 7. Learning Tips */}
       {result.learningTips && result.learningTips.length > 0 && (
-         <section className="border-t border-gray-200 pt-6">
+         <section className="border-t border-gray-200 pt-6 mt-8">
             <h3 className="text-md font-semibold text-gray-600 mb-4 flex items-center gap-2">
                 <GraduationCap size={18} />
                 Quick Tips to Remember
